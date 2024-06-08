@@ -7,5 +7,13 @@ pipeline {
                 checkout scm
             }
         }
+
+         stage('Build') {
+            steps {
+                script {
+                    docker.build("world_of_games_app")
+                }
+            }
+        }
     }
 }
