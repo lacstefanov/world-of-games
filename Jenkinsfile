@@ -19,7 +19,7 @@ pipeline {
         stage('Run') {
             steps {
                 script {
-                    docker.image("world_of_games_app").run('-p 8777:5001 -v Scores.txt:/app/Scores.txt --name my_flask_container')
+                    docker.image("world_of_games_app").run('-p 8777:5001 -v app/Scores.txt --name my_flask_container')
                 }
             }
         }
