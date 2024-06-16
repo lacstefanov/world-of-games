@@ -18,7 +18,7 @@ pipeline {
                     echo "Current PATH: ${env.PATH}"
 
                     // Check Docker version using the found Docker path
-                    sh "${dockerPath} --version
+                    sh "${dockerPath} --version"
                 }
             }
         }
