@@ -11,13 +11,12 @@ pipeline {
             stage('Debug') {
             steps {
                 script {
+                    echo "Starting Debug Stage"
+                    echo "PATH: ${env.PATH}"
+
                     def dockerPath = sh(script: 'which docker', returnStdout: true).trim()
                     echo "Docker binary path: ${dockerPath}"
 
-                    // Print the current PATH
-                    echo "Current PATH: ${env.PATH}"
-
-                    // Check Docker version using the found Docker path
                     sh "${dockerPath} --version"
                 }
             }
