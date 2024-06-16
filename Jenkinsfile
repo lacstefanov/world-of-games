@@ -11,14 +11,9 @@ pipeline {
             steps {
                 script {
                     echo "Starting Debug Stage"
-                    echo "PATH: ${env.PATH}"
+                    echo "Environment PATH: ${env.PATH}"
 
-                    // Use the Docker installation configured in Jenkins
-                    def dockerHome = tool name: 'Docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
-                    def dockerClient = dockerHome.getClient()
-                    dockerClient.version()
-
-                    // Test docker version
+                    // Your Docker commands here
                     sh "docker --version"
                 }
             }
