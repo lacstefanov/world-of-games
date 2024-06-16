@@ -28,7 +28,7 @@ pipeline {
             steps {
                 script {
                     docker.image("world_of_games_app").inside{
-                        sh "python e2e.py"
+                        sh "python /app/e2e.py"
                     }
                 }
             }
