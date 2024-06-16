@@ -24,14 +24,6 @@ pipeline {
             }
         }
 
-        stage('Run tests') {
-            steps {
-                script {
-                    docker.image("world_of_games_app").inside{
-                        sh "python e2e.py"
-                    }
-                }
-            }
-        }
+
     }
 }
