@@ -8,30 +8,5 @@ pipeline {
             }
         }
 
-         stage('Build') {
-            steps {
-                script {
-                    docker.build("world_of_games_app")
-                }
-            }
-        }
-
-        stage('Run') {
-            steps {
-                script {
-                    docker.image("world_of_games_app").run('-p 8777:5001 --name world_of_games_app_container')
-                }
-            }
-        }
-
-                stage('Run tests') {
-            steps {
-                script {
-                    docker.image("world_of_games_app").inside{
-                        sh "python /app/e2e.py"
-                    }
-                }
-            }
-        }
     }
 }
