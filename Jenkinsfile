@@ -12,8 +12,6 @@ pipeline {
                 script {
                     echo "Starting Debug Stage"
                     echo "PATH: ${env.PATH}"
-                    sh 'which docker'
-                    sh 'docker --version'
                 }
             }
         }
