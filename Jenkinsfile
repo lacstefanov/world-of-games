@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-     DOCKER_TOOL = tool name: 'Docker'
-     PATH = "${DOCKER_TOOL}/bin:${env.PATH}"
+        DOCKER_PATH = '/usr/bin/docker'
+        PATH = "/usr/bin:${env.PATH}"
     }
 
     stages {
