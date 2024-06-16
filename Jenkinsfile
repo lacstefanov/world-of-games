@@ -2,8 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_PATH = '/usr/bin/docker'
-        PATH = "/usr/bin:${env.PATH}"
+        PATH = "/usr/bin:$PATH" // Ensure Docker path is included in PATH
     }
 
     stages {
@@ -14,10 +13,13 @@ pipeline {
                     echo "Starting Debug Stage"
                     echo "PATH: ${env.PATH}"
 
-                    def dockerPath = sh(script: 'which docker', returnStdout: true).trim()
-                    echo "Docker binary path: ${dockerPath}"
+                    // Use the Docker installation configured in Jenkins
+                    def dockerHome = tool name: 'Docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
+                    def dockerClient = dockerHome.getClient()
+                    dockerClient.version()
 
-                    sh "${dockerPath} --version"
+                    // Test docker version
+                    sh "docker --version"
                 }
             }
         }
