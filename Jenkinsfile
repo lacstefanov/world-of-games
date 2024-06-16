@@ -16,6 +16,14 @@ pipeline {
             }
         }
 
+        stage('Run') {
+            steps {
+                script {
+                    docker.image("world_of_games_app").run('-p 8777:5001 --name world_of_games_app_container')
+                }
+            }
+        }
+
         
 
     }
