@@ -10,8 +10,10 @@ pipeline {
             stage('Debug') {
             steps {
                 script {
-                    def dockerPath = '/usr/bin/docker'
-                    sh "${dockerPath} --version"
+                    echo "Starting Debug Stage"
+                    echo "PATH: ${env.PATH}"
+                    sh 'which docker'
+                    sh 'docker --version'
                 }
             }
         }
