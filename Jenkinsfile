@@ -11,7 +11,9 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    docker.build("world_of_games_app")
+                    def dockerHome = tool name: 'Docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
+                    def dockerClient = dockerHome.getClient()
+                    dockerClient.build("world_of_games_app")
                 }
             }
         }
