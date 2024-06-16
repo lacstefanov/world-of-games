@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+     DOCKER_TOOL = tool name: 'Docker'
+     PATH = "${DOCKER_TOOL}/bin:${env.PATH}"
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -11,9 +16,8 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    def dockerHome = tool name: 'Docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
-                    def dockerClient = dockerHome.getClient()
-                    dockerClient.build("world_of_games_app")
+                    sh 'docker --version'
+                    def image = docker.build("world_of_games_app")
                 }
             }
         }
