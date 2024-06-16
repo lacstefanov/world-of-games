@@ -7,6 +7,22 @@ pipeline {
     }
 
     stages {
+
+            stage('Debug') {
+            steps {
+                script {
+                    // Print the Docker tool path
+                    echo "Docker binary path: ${DOCKER_PATH}"
+
+                    // Print the current PATH
+                    echo "Current PATH: ${env.PATH}"
+
+                    // Check Docker version
+                    sh "${DOCKER_PATH} --version"
+                }
+            }
+        }
+        
         stage('Checkout') {
             steps {
                 checkout scm
