@@ -5,7 +5,8 @@ def add_score(difficulty):
     points_won_by_user = (difficulty * 3) + 5
     print(f'Points won by user: {points_won_by_user}')
 
-    file_path = r"C:\Users\lstefanov\Documents\Knowledge\DevOps\Main Project\Assignment 2\Scores.txt"
+    #file_path = r"C:\Users\lstefanov\Documents\Knowledge\DevOps\Main Project\Assignment 2\Scores.txt"
+    file_path = "/app/Scores.txt"
 
     if os.path.exists(file_path):
         with open(file_path, 'r') as file:
