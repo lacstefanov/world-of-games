@@ -6,16 +6,6 @@ pipeline {
     }
 
     stages {
-
-            stage('Debug') {
-            steps {
-                script {
-                    echo "Starting Debug Stage"
-                    echo "PATH: ${env.PATH}"
-                }
-            }
-        }
-
         stage('Checkout') {
             steps {
                 checkout scm
