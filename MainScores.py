@@ -1,7 +1,7 @@
 import os
 from flask import Flask
-
-file_path = r"C:\Users\lstefanov\Documents\Knowledge\DevOps\Main Project\Assignment 2\Scores.txt"
+#file_path = r"C:\Users\lstefanov\Documents\Knowledge\DevOps\Main Project\Assignment 2\Scores.txt"
+file_path = "/app/Scores.txt"
 
 app = Flask(__name__)
 
