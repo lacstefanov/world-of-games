@@ -11,18 +11,18 @@ pipeline {
             stage('Debug') {
             steps {
                 script {
-                    // Print the Docker tool path
-                    echo "Docker binary path: ${DOCKER_PATH}"
+                    def dockerPath = sh(script: 'which docker', returnStdout: true).trim()
+                    echo "Docker binary path: ${dockerPath}"
 
                     // Print the current PATH
                     echo "Current PATH: ${env.PATH}"
 
-                    // Check Docker version
-                    sh "${DOCKER_PATH} --version"
+                    // Check Docker version using the found Docker path
+                    sh "${dockerPath} --version
                 }
             }
         }
-        
+
         stage('Checkout') {
             steps {
                 checkout scm
