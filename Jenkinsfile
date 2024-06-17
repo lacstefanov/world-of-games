@@ -31,9 +31,11 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    sh 'docker.image("world_of_games_app").inside { sh "ls -l /app" } '
+                    docker.image("world_of_games_app").inside {
+                        bat '/app/e2e.py'
                     }
                 }
             }
         }
     }
+}
