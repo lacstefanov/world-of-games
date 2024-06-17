@@ -12,10 +12,10 @@ pipeline {
             }
         }
 
-        stage('Build Jenkins image') {
+        stage('Build') {
             steps {
                 script {
-                    sh 'docker build -t jenkins-image . -f jenkins/Dockerfile'
+                    docker.build("world_of_games_app")
                 }
             }
         }
