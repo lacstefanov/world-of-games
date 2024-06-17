@@ -15,7 +15,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    docker.withRun("-v $(which docker):/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock") {
+                    docker.withRun("-v ${sh(script: 'which docker', returnStdout: true).trim()}:${dockerToolPath('docker')} -v /var/run/docker.sock:/var/run/docker.sock") {
                     docker.image("${DOCKER_IMAGE_ID}").pull()
                     docker.image("${DOCKER_IMAGE_ID}").run()
                     #def image = docker.build("world_of_games_app")
