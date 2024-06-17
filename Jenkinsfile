@@ -31,8 +31,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    docker.image("world_of_games_app").inside {
-                        sh '/app/e2e.py'
+                    sh 'docker.image("world_of_games_app").inside { python /app/e2e.py } '
                     }
                 }
             }
