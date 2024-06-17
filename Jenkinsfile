@@ -27,5 +27,26 @@ pipeline {
                 }
             }
         }
+
+        stage('Test') {
+            steps {
+                script {
+                    docker.image("world_of_games_app").inside {
+                        sh './e2e.py'
+                    }
+                }
+            }
+            post {
+                always {
+                    script {
+                        docker.container("world_of_games_app").stop()
+                    }
+                }
+                failed {
+                    echo "Tests failed, stopping container..."
+                }
+            }
+        }
+
     }
 }
