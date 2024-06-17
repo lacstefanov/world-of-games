@@ -14,7 +14,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 5001
 
 # Set the PATH environment variable to include /usr/local/bin
-ENV PATH="/usr/local/bin:$PATH"  # This is the new line
+ENV PATH="/usr/local/bin:$PATH"
 
 # Run MainScores.py when the container launches
 CMD ["python", "/app/MainScores.py"]
