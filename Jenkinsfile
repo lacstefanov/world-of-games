@@ -35,16 +35,5 @@ pipeline {
                     }
                 }
             }
-            post {
-                always {
-                    script {
-                        docker.container("world_of_games_app").stop()
-                    }
-                }
-                failed {
-                    echo "Tests failed, stopping container..."
-                }
-            }
         }
-
     }
