@@ -12,17 +12,12 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Build Jenkins image') {
             steps {
                 script {
-                    // Run Docker container with explicit Docker path
-                    docker.withRun("-v ${sh(script: 'which docker', returnStdout: true).trim()}:${dockerToolPath('docker')} -v /var/run/docker.sock:/var/run/docker.sock") {
-                        // Your Docker commands here
-                        docker.image("${DOCKER_IMAGE_ID}").pull()
-                        docker.image("${DOCKER_IMAGE_ID}").run()
-                    }
+                    sh 'docker build -t jenkins-image . -f jenkins/Dockerfile'
                 }
             }
         }
-}
+    }
 }
