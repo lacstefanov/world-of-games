@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE_ID = '5dea1f4edf69'
+        DOCKER_IMAGE = 'world_of_games_app'.toLowerCase()
     }
 
     stages {
@@ -33,7 +34,7 @@ pipeline {
                 script {
                     def dockerImage = 'world_of_games_app'
                     bat '''
-                    docker run ${dockerImage} python /app/e2e.py
+                        docker run ${env.DOCKER_IMAGE} python /app/e2e.py
                     '''
                 }
             }
