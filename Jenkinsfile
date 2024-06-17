@@ -34,7 +34,7 @@ pipeline {
                 script {
                     def dockerImage = 'world_of_games_app'
                     bat '''
-                        docker run ${env.DOCKER_IMAGE} python /app/e2e.py
+                        "%JAVA_HOME%\bin\python" /app/e2e.py
                     '''
                 }
             }
