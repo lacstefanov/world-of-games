@@ -31,7 +31,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    bat 'docker.image("my_flask_app").inside { bat python /app/e2e.py } '
+                    bat 'docker.image("world_of_games_app").inside { bat python /app/e2e.py } '
                 }
             }
         }
