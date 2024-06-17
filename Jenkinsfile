@@ -31,10 +31,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                sh '''
-                    export PATH="/usr/local/bin:$PATH"
-                    sh 'docker.image("world_of_games_app").inside { sh python /app/e2e.py } '
-                '''
+                    sh 'docker.image("world_of_games_app").inside { sh "usr/bin/python /app/e2e.py" } '
                     }
                 }
             }
