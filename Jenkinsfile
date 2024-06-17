@@ -32,10 +32,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    def dockerImage = 'world_of_games_app'
-                    bat '''
-                        docker run DOCKER_IMAGE
-                    '''
+                    docker.image("world_of_games_app").run('python /app/e2e.py')
                 }
             }
         }
