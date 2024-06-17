@@ -32,7 +32,7 @@ pipeline {
             steps {
                 script {
                     docker.image("world_of_games_app").inside {
-                        sh './e2e.py'
+                        sh '/app/e2e.py'
                     }
                 }
             }
