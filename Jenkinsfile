@@ -19,5 +19,13 @@ pipeline {
                 }
             }
         }
+
+        stage('Run') {
+            steps {
+                script {
+                    docker.image("world_of_games_app").run('-p 8777:5001 -v /path/to/Scores.txt:/app/Scores.txt --name world_of_games_container')
+                }
+            }
+        }
     }
 }
