@@ -31,8 +31,9 @@ pipeline {
         stage('Test') {
             steps {
                 script {
+                    def dockerImage = 'world_of_games_app'
                     bat '''
-                    docker world_of_games_app python /app/e2e.py
+                    docker run ${dockerImage} python /app/e2e.py
                     '''
                 }
             }
