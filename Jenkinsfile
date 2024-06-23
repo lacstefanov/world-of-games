@@ -3,7 +3,7 @@ pipeline {
 
     tools {
         // Define the Docker tool with the configured name from Jenkins Global Tool Configuration
-        dockerTool name: 'docker', type: 'Docker'
+        dockerTool name: 'Dockerino', type: 'Docker'
     }
 
     stages {
