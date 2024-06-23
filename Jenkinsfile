@@ -23,7 +23,8 @@ pipeline {
                 script {
                     docker.withTool('docker') {
                         docker.withRegistry(registry, registryCredential) {
-                            docker.build("world_of_games_app")
+                            def customImage = docker.build("world_of_games_app")
+                            customImage.push()
                         }
                     }
                 }
