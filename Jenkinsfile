@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-    environment {
-        DOCKER_IMAGE_ID = '5dea1f4edf69'
-        DOCKER_IMAGE = 'world_of_games_app'.toLowerCase()
+    tools {
+        // Specify the name of the Docker installation configured in Jenkins
+        dockerTool 'docker'
     }
 
     stages {
