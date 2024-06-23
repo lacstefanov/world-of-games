@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        // Define the Docker tool with the configured name from Jenkins Global Tool Configuration
-        dockerTool name: 'Dockerino', type: 'Docker'
-    }
-
     stages {
         stage('Checkout') {
             steps {
@@ -16,11 +11,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                def dockerHome = tool name: 'docker', type: 'Docker'
-
-                    dockerHome.withDockerRegistry([credentialsId: 'docker-registry-creds', url: 'https://index.docker.io/v1/']) {
                     docker.build("world_of_games_app")
-                    }
                 }
             }
         }
