@@ -10,8 +10,8 @@ COPY . .
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Install wget, curl, and gnupg2
-RUN apt-get update && apt-get install -y wget curl gnupg2
+# Install wget, curl, gnupg2, and unzip
+RUN apt-get update && apt-get install -y wget curl gnupg2 unzip
 
 # Install Chrome browser
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
