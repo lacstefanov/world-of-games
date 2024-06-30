@@ -41,7 +41,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    sh 'python /app/tests/e2e.py'
+                    sh '/usr/bin/python /path/to/e2e.py'
                 }
             }
         }
