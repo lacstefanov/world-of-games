@@ -32,7 +32,7 @@ pipeline {
             steps {
                 script {
                     // Run the dockerized application exposing port 8777 and mount the dummy Scores.txt file
-                    def dockerRunCommand = "-d --name world_of_games_container -p 8777:5001 world_of_games_app"
+                    def dockerRunCommand = "-d --name world_of_games_container -p 5001:5001 world_of_games_app"
                     sh "docker run ${dockerRunCommand}"
                 }
             }
