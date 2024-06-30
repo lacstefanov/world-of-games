@@ -16,7 +16,6 @@ pipeline {
                     }
                 }
             }
-        }
 
         stage('Run') {
             steps {
@@ -27,3 +26,4 @@ pipeline {
             }
         }
     }
+}
