@@ -11,7 +11,7 @@ from selenium.webdriver.chrome.service import Service
 def test_score_service(url):
     chrome_options = Options()
     chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--headless")
+    #chrome_options.add_argument("--headless")
     chrome_options.add_argument("--disable-dev-shm-usage")
 
     chrome_binary_path = '/opt/google/chrome/chrome'
