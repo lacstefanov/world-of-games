@@ -24,6 +24,6 @@ def test_score_service(url):
     finally:
         driver.quit()
 
-url = "http://127.0.0.1:5001/"
+url = "http://host.docker.internal:5001/"
 result = test_score_service(url)
 print("Score is within range: ", result)
