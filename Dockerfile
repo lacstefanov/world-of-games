@@ -28,12 +28,6 @@ RUN CHROMEDRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/
 # Give execution permissions to chromedriver
 RUN chmod +x /usr/local/bin/chromedriver
 
-# Upgrade pip to ensure the latest version of Selenium can be installed
-RUN pip install --upgrade pip
-
-# Install specific version of Selenium compatible with Chrome version 126
-RUN pip install selenium==4.11.2
-
 # Make port 5001 available to the world outside this container
 EXPOSE 5001
 
