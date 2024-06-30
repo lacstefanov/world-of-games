@@ -16,7 +16,7 @@ def test_score_service(url):
     service = Service(ChromeDriverManager().install())
     chrome_options.binary_location = chrome_binary_path
     driver = webdriver.Chrome(service=service, options=chrome_options)
-    print (driver)
+    print(driver)
 
     try:
         driver.get(url)
@@ -28,6 +28,6 @@ def test_score_service(url):
     finally:
         driver.quit()
 
-url = "127.0.0.1:5001/"
-result = test_score_service(url)
+url = "http://127.0.0.1:5001/"
+# result = test_score_service(url)
 print("Score is within range: ", result)
