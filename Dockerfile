@@ -28,8 +28,8 @@ RUN CHROMEDRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/
 # Give execution permissions to chromedriver
 RUN chmod +x /usr/local/bin/chromedriver
 
-# Make port 5001 available to the world outside this container
-EXPOSE 5001
+# Make port 8771 available to the world outside this container
+EXPOSE 8771
 
 # Set the PATH environment variable to include /usr/local/bin
 ENV PATH="/usr/local/bin:$PATH"

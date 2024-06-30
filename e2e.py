@@ -1,5 +1,4 @@
-import time
-
+import os
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
@@ -8,6 +7,7 @@ from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 
+url = os.getenv('APP_URL', 'http://localhost:8777/')
 def test_score_service(url):
     chrome_options = Options()
     chrome_options.add_argument("--no-sandbox")
@@ -21,7 +21,6 @@ def test_score_service(url):
     print(driver)
 
     try:
-        time.sleep(30)
         driver.get(url)
         score_element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "score")))
         score_text = score_element.text
