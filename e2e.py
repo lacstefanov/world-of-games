@@ -17,10 +17,6 @@ def test_score_service(url):
     chrome_options.binary_location = chrome_binary_path
     driver = webdriver.Chrome(service=service, options=chrome_options)
 
-
-    # Initialize ChromeDriver using webdriver_manager
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-
     try:
         driver.get(url)
         score_element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "score")))
