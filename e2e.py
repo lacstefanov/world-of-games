@@ -4,16 +4,16 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.utils import ChromeType
 
 def test_score_service(url):
-    service = ChromeDriverManager().install()
     chrome_options = Options()
     chrome_options.add_argument("--headless")  # Run Chrome in headless mode (no GUI)
     chrome_options.add_argument("--no-sandbox")  # Bypass OS security model
     chrome_options.add_argument("--disable-dev-shm-usage")  # Overcome limited resource problems
 
-    # Initialize ChromeDriver using webdriver_manager
-    driver = webdriver.Chrome(service=service, options=chrome_options)
+    # Initialize ChromeDriverManager with ChromeType.GOOGLE, which supports Google Chrome
+    driver = webdriver.Chrome(ChromeDriverManager(chrome_type=ChromeType.GOOGLE).install(), options=chrome_options)
 
     try:
         driver.get(url)
