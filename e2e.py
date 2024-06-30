@@ -1,3 +1,5 @@
+import time
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
@@ -19,6 +21,7 @@ def test_score_service(url):
     print(driver)
 
     try:
+        time.sleep(30)
         driver.get(url)
         score_element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "score")))
         score_text = score_element.text
