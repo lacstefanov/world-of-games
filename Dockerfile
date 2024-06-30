@@ -10,6 +10,9 @@ COPY . .
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Install additional dependencies
+RUN pip install webdriver-manager
+
 # Install wget, curl, gnupg2, and unzip
 RUN apt-get update && apt-get install -y wget curl gnupg2 unzip
 

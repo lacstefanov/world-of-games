@@ -4,7 +4,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-
+from webdriver_manager.chrome import ChromeDriverManager
 def test_score_service(url):
     chrome_driver_path = "/usr/local/bin/chromedriver"  # Adjust path as per your Docker setup
     chrome_options = Options()
@@ -14,7 +14,7 @@ def test_score_service(url):
 
     # Specify ChromeDriver and options
     service = Service(chrome_driver_path)
-    driver = webdriver.Chrome(service=service, options=chrome_options)
+    driver = webdriver.Chrome(service=ChromeDriverManager().install(), options=chrome_options)
 
     try:
         driver.get(url)
