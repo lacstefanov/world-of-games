@@ -32,7 +32,7 @@ pipeline {
             steps {
                 script {
                     // Run the dockerized application exposing port 8777 and mount the dummy Scores.txt file
-                    docker.image('world_of_games_app').run('-d --name world_of_games_container -p 8777:5001 -v ${WORKSPACE}/Scores.txt:/app/Scores.txt')
+                    docker.image('world_of_games_app').run("-d --name world_of_games_container -p 8777:5001 -v ${WORKSPACE}/Scores.txt:/app/Scores.txt")
                 }
             }
         }
