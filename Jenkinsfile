@@ -3,7 +3,16 @@ pipeline {
 
 
     stages {
-
+        stage('Cleanup') {
+            steps {
+                script {
+                    // Stop and remove any existing container named world_of_games_container
+                    sh 'docker rm -f world_of_games_container || true'
+                    // Remove any existing image named world_of_games_app
+                    sh 'docker rmi -f world_of_games_app || true'
+                }
+            }
+        }
 
         stage('Checkout') {
             steps {
@@ -23,7 +32,7 @@ pipeline {
             steps {
                 script {
                     // Run the dockerized application exposing port 8777 and mount the dummy Scores.txt file
-                    sh 'docker run -d --name world_of_games_container -p 8777:5001 -v "$(pwd)/Scores.txt:/app/Scores.txt" world_of_games_app'
+                    docker.image('world_of_games_app').run('-d --name world_of_games_container -p 8777:5001 -v ${WORKSPACE}/Scores.txt:/app/Scores.txt')
                 }
             }
         }
