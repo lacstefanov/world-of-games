@@ -4,16 +4,6 @@ pipeline {
 
     stages {
 
-       stage('Cleanup') {
-            steps {
-                script {
-                    // Stop and remove any existing container named world_of_games_container
-                    sh 'docker rm -f world_of_games_container || true'
-                    // Remove any existing image named world_of_games_app
-                    sh 'docker rmi -f world_of_games_app || true'
-                }
-            }
-        }
 
         stage('Checkout') {
             steps {
