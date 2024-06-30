@@ -1,9 +1,22 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+
+
 def test_score_service(url):
-    driver = webdriver.Chrome()
+    options = Options()
+    options.add_argument('--headless')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-shm-usage')
+    options.add_argument('--remote-debugging-port=9222')
+
+    # Set up Chrome service
+    service = ChromeService(executable_path='/usr/local/bin/chromedriver')
+
+    driver = webdriver.Chrome(service=service, options=options)
 
     try:
         driver.get(url)
@@ -15,6 +28,7 @@ def test_score_service(url):
     finally:
         driver.quit()
 
+
 url = "http://127.0.0.1:5001/"
 result = test_score_service(url)
-print("Score is within range: ",result)
+print("Score is within range: ", result)
