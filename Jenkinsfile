@@ -43,7 +43,7 @@ pipeline {
                 script {
                         // Execute Selenium tests within the Docker container environment
                         docker.image('world_of_games_app').inside {
-                            sh "python /app/tests/e2e.py http://${containerId}:8777/"
+                            sh "python /app/tests/e2e.py"
                         }
                 }
             }
