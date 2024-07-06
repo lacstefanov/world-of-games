@@ -41,15 +41,10 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    def containerId = env.CONTAINER_ID
-                    if (containerId) {
                         // Execute Selenium tests within the Docker container environment
                         docker.image('world_of_games_app').inside {
                             sh "python /app/tests/e2e.py http://${containerId}:8777/"
                         }
-                    } else {
-                        error "Container ID not found. Unable to execute tests."
-                    }
                 }
             }
         }
