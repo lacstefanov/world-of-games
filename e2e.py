@@ -7,7 +7,7 @@ from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 
-url = os.getenv('APP_URL', 'http://localhost:8777/')
+url = os.getenv('APP_URL', 'http://world_of_games_container:5001/')
 def test_score_service(url):
     chrome_options = Options()
     chrome_options.add_argument("--no-sandbox")
