@@ -48,7 +48,7 @@ pipeline {
                     // Run the dockerized application exposing port 8777 and mount the dummy Scores.txt file
                     def dockerRunCommand = "-d --name world_of_games_container -p 8777:5001 --network $DOCKER_NETWORK world_of_games_app"
                     sh "docker run ${dockerRunCommand}"
-                    sleep 20 // Wait for 10 seconds to allow the application to start
+                    sleep 120 // Wait for 10 seconds to allow the application to start
                     sh 'docker logs world_of_games_container' // Check logs for any errors
                     sh 'docker exec world_of_games_container curl http://localhost:5001' // Check internal access
                 }
