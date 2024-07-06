@@ -43,7 +43,6 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                        sh 'curl http://localhost:8777'
                         // Execute Selenium tests within the Docker container environment
                         docker.image('world_of_games_app').inside {
                             sh "python /app/tests/e2e.py"
