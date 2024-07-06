@@ -12,6 +12,13 @@ from selenium.webdriver.chrome.service import Service
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
+# Set up stdout handler to ensure immediate flushing
+stdout_handler = logging.StreamHandler(sys.stdout)
+stdout_handler.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+stdout_handler.setFormatter(formatter)
+logger.addHandler(stdout_handler)
+
 
 url = os.getenv('APP_URL', 'http://world_of_games_container:5001/')
 logger.info(f"URL being tested: {url}")
