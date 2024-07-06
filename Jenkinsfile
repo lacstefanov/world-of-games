@@ -34,6 +34,8 @@ pipeline {
                     // Run the dockerized application exposing port 8777 and mount the dummy Scores.txt file
                     def dockerRunCommand = "-d --name world_of_games_container -p 8777:5001 world_of_games_app"
                     sh "docker run ${dockerRunCommand}"
+                    sleep 10 // Wait for 10 seconds to allow the application to start
+                    sh 'docker logs world_of_games_container' // Check logs for any errors
                 }
             }
         }
@@ -41,6 +43,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
+                        sh 'curl http://localhost:8777'
                         // Execute Selenium tests within the Docker container environment
                         docker.image('world_of_games_app').inside {
                             sh "python /app/tests/e2e.py"
