@@ -30,10 +30,5 @@ def test_score_service(url):
     finally:
         driver.quit()
 
-container_id = os.getenv('CONTAINER_ID')
-if container_id:
-    url = f"http://{container_id}:8777/"
-    result = test_score_service(url)
-    print("Score is within range: ", result)
-else:
-    print("Container ID not found. Test cannot be executed.")
+result = test_score_service(url)
+print("Score is within range: ", result)
