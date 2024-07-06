@@ -36,6 +36,7 @@ pipeline {
                     sh "docker run ${dockerRunCommand}"
                     sleep 10 // Wait for 10 seconds to allow the application to start
                     sh 'docker logs world_of_games_container' // Check logs for any errors
+                    sh 'docker exec world_of_games_container curl http://localhost:5001' // Check internal access
                 }
             }
         }
@@ -44,8 +45,10 @@ pipeline {
             steps {
                 script {
                         // Execute Selenium tests within the Docker container environment
-                        docker.image('world_of_games_app').inside {
-                            sh "python /app/tests/e2e.py"
+                        withEnv(['APP_URL=http://localhost:8777']) {
+                            docker.image('world_of_games_app').inside {
+                                sh "python /app/tests/e2e.py"
+                            }
                         }
                 }
             }
