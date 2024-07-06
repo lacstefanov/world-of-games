@@ -13,6 +13,8 @@ pipeline {
                     sh 'docker rm -f world_of_games_container || true'
                     // Remove any existing image named world_of_games_app
                     sh 'docker rmi -f world_of_games_app || true'
+                    // Remove the custom Docker network
+                    sh 'docker network rm $DOCKER_NETWORK || true'
                 }
             }
         }

@@ -14,7 +14,7 @@ def test_score_service(url):
     #chrome_options.add_argument("--headless")
     chrome_options.add_argument("--disable-dev-shm-usage")
 
-    chrome_binary_path = '/opt/google/chrome/chrome'
+    chrome_binary_path = '/usr/bin/google-chrome'
     service = Service(ChromeDriverManager().install())
     chrome_options.binary_location = chrome_binary_path
     driver = webdriver.Chrome(service=service, options=chrome_options)
