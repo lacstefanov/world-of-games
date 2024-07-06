@@ -1,6 +1,9 @@
 pipeline {
     agent any
 
+    environment {
+        DOCKER_NETWORK = 'world_of_games_network'
+    }
 
     stages {
         stage('Cleanup') {
@@ -10,6 +13,15 @@ pipeline {
                     sh 'docker rm -f world_of_games_container || true'
                     // Remove any existing image named world_of_games_app
                     sh 'docker rmi -f world_of_games_app || true'
+                }
+            }
+        }
+
+        stage('Create Network') {
+            steps {
+                script {
+                    // Create a custom Docker network
+                    sh 'docker network create $DOCKER_NETWORK'
                 }
             }
         }
@@ -45,8 +57,8 @@ pipeline {
             steps {
                 script {
                         // Execute Selenium tests within the Docker container environment
-                        withEnv(['APP_URL=http://localhost:8777']) {
-                            docker.image('world_of_games_app').inside {
+                        withEnv(['APP_URL=http://world_of_games_container:5001']) {
+                            docker.image('world_of_games_app').inside("--network $DOCKER_NETWORK") {
                                 sh "python /app/tests/e2e.py"
                             }
                         }
