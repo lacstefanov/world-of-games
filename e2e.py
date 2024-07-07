@@ -53,5 +53,5 @@ def test_score_service(url):
         driver.quit()
 
 
-result = test_score_service(url)
+result = test_score_service("https://www.google.com/")
 print("Score is within range: ", result)
