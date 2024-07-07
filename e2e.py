@@ -24,6 +24,8 @@ logger.addHandler(stdout_handler)
 
 url = os.getenv('APP_URL', 'http://world_of_games_container:5001/')
 logger.info(f"URL being tested: {url}")
+with open('/app/logs/test_output.log', 'r') as file:
+    print(file.read())
 
 
 def test_score_service(url):
