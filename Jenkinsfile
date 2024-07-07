@@ -78,12 +78,11 @@ pipeline {
 
                     // Log in to Docker Hub
                     withCredentials([usernamePassword(credentialsId: env.DOCKERHUB_CREDENTIALS, usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
-                        sh "docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD"
-
-                        // Tag and push the Docker image
-                        def imageTag = "${env.DOCKERHUB_REPO}:latest"
-                        sh "docker tag world_of_games_app ${imageTag}"
-                        sh "docker push ${imageTag}"
+                        sh '''
+                            echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin
+                            docker tag world_of_games_app ${DOCKERHUB_REPO}:latest
+                            docker push ${DOCKERHUB_REPO}:latest
+                        '''
                     }
                 }
             }
