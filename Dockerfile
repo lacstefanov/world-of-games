@@ -10,8 +10,29 @@ COPY . .
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Install wget, curl, gnupg2, and unzip
-RUN apt-get update && apt-get install -y wget curl gnupg2 unzip
+# Install necessary dependencies for running Chrome
+RUN apt-get update && apt-get install -y \
+    wget \
+    curl \
+    gnupg2 \
+    unzip \
+    xdg-utils \
+    libx11-xcb1 \
+    libxcomposite1 \
+    libxcursor1 \
+    libxdamage1 \
+    libxi6 \
+    libxtst6 \
+    libnss3 \
+    libxrandr2 \
+    libasound2 \
+    libatk1.0-0 \
+    libatk-bridge2.0-0 \
+    libgtk-3-0 \
+    libgbm-dev \
+    libxshmfence-dev \
+    fonts-liberation \
+    libappindicator3-1
 
 # Install Chrome browser
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -

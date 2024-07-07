@@ -1,7 +1,4 @@
 import os
-import logging
-import sys
-
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
@@ -10,16 +7,6 @@ from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 
-# Set up logging
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
-
-# Set up stdout handler to ensure immediate flushing
-stdout_handler = logging.StreamHandler(sys.stdout)
-stdout_handler.setLevel(logging.DEBUG)
-formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-stdout_handler.setFormatter(formatter)
-logger.addHandler(stdout_handler)
 
 
 url = os.getenv('APP_URL', 'http://world_of_games_container:5001/')
@@ -34,12 +21,10 @@ def test_score_service(url):
     chrome_binary_path = '/usr/bin/google-chrome'
     service = Service(ChromeDriverManager().install())
     chrome_options.binary_location = chrome_binary_path
-    logger.info("Initializing WebDriver...")
     driver = webdriver.Chrome(service=service, options=chrome_options)
-    logger.info(f"WebDriver initialized: {driver}")
     try:
         logger.info(f"Attempting to access URL: {url}")
-        driver.get("https://www.google.com/")
+        driver.get(url)
         score_element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "score")))
         score_text = score_element.text
         score = int(score_text)
@@ -50,5 +35,5 @@ def test_score_service(url):
         driver.quit()
 
 
-result = test_score_service("https://www.google.com/")
+result = test_score_service(url)
 print("Score is within range: ", result)
