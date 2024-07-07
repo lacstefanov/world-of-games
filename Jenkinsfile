@@ -60,7 +60,7 @@ pipeline {
                         // Execute Selenium tests within the Docker container environment
                         withEnv(['APP_URL=http://world_of_games_container:5001']) {
                             docker.image('world_of_games_app').inside("--network $DOCKER_NETWORK") {
-                                sh "python /app/tests/e2e.py"
+                                sh "python /app/e2e.py"
                                 sh "cat /app/logs/test_output.log"
                             }
                         }
