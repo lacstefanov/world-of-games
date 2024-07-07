@@ -88,4 +88,13 @@ pipeline {
             }
         }
     }
+
+    post {
+        always {
+            script {
+                // Clean up the Docker environment
+                sh 'docker system prune -f'
+            }
+        }
+    }
 }
