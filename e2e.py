@@ -42,7 +42,7 @@ def test_score_service(url):
     logger.info(f"WebDriver initialized: {driver}")
     try:
         logger.info(f"Attempting to access URL: {url}")
-        driver.get(url)
+        driver.get("https://www.google.com/")
         score_element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "score")))
         score_text = score_element.text
         score = int(score_text)
