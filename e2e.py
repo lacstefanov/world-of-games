@@ -24,7 +24,6 @@ def test_score_service(url):
     chrome_options.binary_location = chrome_binary_path
     driver = webdriver.Chrome(service=service, options=chrome_options)
     try:
-        logger.info(f"Attempting to access URL: {url}")
         driver.get(url)
         score_element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "score")))
         score_text = score_element.text
