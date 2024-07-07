@@ -7,10 +7,7 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 COPY . .
 
-# Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Install necessary dependencies for running Chrome
+# Install necessary dependencies
 RUN apt-get update && apt-get install -y \
     wget \
     curl \
@@ -32,7 +29,12 @@ RUN apt-get update && apt-get install -y \
     libgbm-dev \
     libxshmfence-dev \
     fonts-liberation \
-    libappindicator3-1
+    libappindicator3-1 \
+    libdrm2 \
+    libnspr4 \
+    libgconf-2-4 \
+    libxss1 \
+    --no-install-recommends
 
 # Install Chrome browser
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
@@ -48,6 +50,9 @@ RUN CHROMEDRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/
 
 # Give execution permissions to chromedriver
 RUN chmod +x /usr/local/bin/chromedriver
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Expose port 5001 (Flask application runs on this port inside the container)
 EXPOSE 5001
