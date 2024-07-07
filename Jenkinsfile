@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_NETWORK = 'world_of_games_network'
         DOCKERHUB_CREDENTIALS = 'a6b347e4-0c43-4f7f-9a75-ac0e352d2fdb'
-        DOCKERHUB_REPO = 'lstefanov/world_of_games_app'
+        DOCKERHUB_REPO = 'lstefanov010/world_of_games_app'
     }
 
     stages {
